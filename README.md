@@ -21,9 +21,9 @@ pnpm start
 ## Implementation decisions
 
 - TypeScript, Tailwind CSS, shadcn-style components built on Radix primitives, lucide-react, Framer Motion, TanStack Query, sonner, `cn`, and `cva`.
-- Tailwind utilities handle responsive timeline layout and dialog styling; custom CSS preserves the precise grid background, decorative borders, spacing, and motion tokens.
+- Tailwind utilities own component styling and responsive layout. Global CSS contains only theme tokens, shared base rules, and the partner marquee keyframes. Radix-backed shadcn dropdowns share interruptible Framer Motion transitions, staggered items, and keyboard/reduced-motion handling. A themed shadcn Sonner wrapper provides toast feedback.
 - `/` uses static generation with 60-second revalidation. `/sale/demo-ido-001` renders fresh data per request. A server-only repository shares the mock fixture with `/api/sale`; TanStack Query hydrates the initial snapshot and refreshes live values every 30 seconds.
-- The countdown updates every second after hydration. Connect Wallet and Connect Sonar open accessible placeholder dialogs. No Web3 integration or real transactions are performed.
+- The countdown updates every second after hydration. Connect Wallet and Connect Sonar reveal the corresponding inline demo panels from the supplied design. No Web3 integration or real transactions are performed.
 - The four timeline milestones remain in one horizontal row. Narrow containers use compact typography; screens below the supported 375px minimum can scroll the timeline without overflowing the page.
 - Partner logos are complete local SVG exports. Icons and artwork use descriptive camelCase filenames. Arial is the fallback because the licensed Roobert font was not supplied.
 - Loading, error, and not-found boundaries handle unavailable sale data. Motion respects reduced-motion preferences; Radix handles keyboard navigation and focus management.

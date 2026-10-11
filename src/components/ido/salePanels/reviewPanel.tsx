@@ -1,12 +1,10 @@
 import { PanelTitle, FrameButton, DetailRows } from "./panelControls";
 import type { SalePanelProps } from "./salePanelTypes";
 import { currency } from "@/lib/utils";
-
 type ReviewPanelProps = Pick<
   SalePanelProps,
   "sale" | "flow" | "dispatch" | "unavailable" | "quote"
 >;
-
 export function ReviewPanel({
   sale,
   flow,
@@ -21,11 +19,19 @@ export function ReviewPanel({
   };
   return (
     <>
-      <div className="review-illustration">
-        <div className="design-placeholder" />
+      <div className={"flex flex-col items-center gap-6"}>
+        <div
+          className={
+            "design-placeholder w-[min(287px,_100%)] h-auto bg-[#ffffff0a] aspect-square"
+          }
+        />
         <PanelTitle label="Review your allocation" />
       </div>
-      <div className="review-details">
+      <div
+        className={
+          "py-0 px-4 mt-6 [&_.participation-rows]:my-0 [&_.participation-rows]:mx-0 [&_.participation-rows_>_div]:min-h-8.5 max-[511px]:py-0 max-[511px]:px-0 @max-[441px]:py-0 @max-[441px]:px-0"
+        }
+      >
         <DetailRows
           values={[
             `${currency(quote.amount, 2)} ${asset}`,
@@ -34,6 +40,14 @@ export function ReviewPanel({
             `$${sale.tokenPrice}`,
             sale.distribution,
             "Demo only",
+          ]}
+          displayNames={[
+            "Demo",
+            "Demo",
+            "Demo",
+            "Lorem ipsum",
+            "Lorem ipsum",
+            "Lorem ipsum",
           ]}
           names={[
             "Contribution",
@@ -44,7 +58,11 @@ export function ReviewPanel({
             "Status",
           ]}
         />
-        <div className="review-buttons">
+        <div
+          className={
+            "flex gap-2.5 mt-4 [&_>_div]:flex-1 max-[511px]:flex-col @max-[441px]:flex-col"
+          }
+        >
           <FrameButton
             label="Confirm demo quote"
             disabled={!quote.valid || !accepted || unavailable}

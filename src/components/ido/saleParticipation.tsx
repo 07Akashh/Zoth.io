@@ -10,7 +10,6 @@ import type { Sale } from "@/types/sale";
 import type { SaleWindow } from "@/lib/saleTime";
 import type { SaleFlowAction, SaleFlowState } from "@/lib/saleFlow";
 import { getContributionQuote } from "@/lib/saleFlow";
-
 import type { SalePanelProps } from "./salePanels/salePanelTypes";
 import { OverviewPanel } from "./salePanels/overviewPanel";
 import { ConnectedPanel } from "./salePanels/connectedPanel";
@@ -19,7 +18,7 @@ import { ComparisonPanel } from "./salePanels/comparisonPanel";
 import { QuotePanel } from "./salePanels/quotePanel";
 import { ReviewPanel } from "./salePanels/reviewPanel";
 import { AllocationPanel } from "./salePanels/allocationPanel";
-
+import { saleCardVariants } from "./saleCardVariants";
 type SaleParticipationProps = {
   keyboard?: boolean;
   sale: Sale;
@@ -30,7 +29,6 @@ type SaleParticipationProps = {
   onChooseAsset: (asset: string) => void;
   onSonarRequest: () => void;
 };
-
 export const SaleParticipation = forwardRef<
   HTMLElement,
   SaleParticipationProps
@@ -72,7 +70,7 @@ export const SaleParticipation = forwardRef<
   const variants = {
     enter: (instant: boolean) => ({
       opacity: 0,
-      transform: instant || reduced ? "none" : "translate3d(12px,0px,0px)",
+      transform: instant || reduced ? "none" : "translate3d(0px,0px,0px)",
     }),
     present: (instant: boolean) => ({
       opacity: 1,
@@ -84,7 +82,7 @@ export const SaleParticipation = forwardRef<
     }),
     exit: (instant: boolean) => ({
       opacity: 0,
-      transform: instant || reduced ? "none" : "translate3d(12px,0px,0px)",
+      transform: instant || reduced ? "none" : "translate3d(0px,0px,0px)",
       transition: {
         duration: instant ? 0 : panelExitSeconds,
         ease: motionEaseOut,
@@ -99,17 +97,24 @@ export const SaleParticipation = forwardRef<
       initial="enter"
       animate="present"
       exit="exit"
-      className={`participation-card participation--${step} ${step === "overview" && flow.walletDemoConnected ? "participation--ready" : ""}`}
+      className={saleCardVariants({
+        step: step === "overview" && flow.walletDemoConnected ? "ready" : step,
+      })}
       id={isPresent ? "participate" : undefined}
       aria-hidden={!isPresent || undefined}
       inert={!isPresent || undefined}
       aria-label="Token sale participation"
     >
-      <span className="sr-only" aria-live="polite">
+      <span className={"sr-only"} aria-live="polite">
         Current activity: {step}
       </span>
       {unavailable && step !== "complete" ? (
-        <p className="sale-expired-alert" role="status">
+        <p
+          className={
+            "border border-[var(--rust)] bg-[#251007] py-2.5 px-2.5 mb-4 text-[12px]"
+          }
+          role="status"
+        >
           {saleWindow === "upcoming"
             ? "The demo sale has not started."
             : saleWindow === "ended"
@@ -119,13 +124,12 @@ export const SaleParticipation = forwardRef<
       ) : null}
       <ActiveSalePanel {...panelProps} />
 
-      <span className="sr-only">
+      <span className={"sr-only"}>
         Demo environment. No on-chain transactions.
       </span>
     </motion.section>
   );
 });
-
 function ActiveSalePanel(props: SalePanelProps) {
   switch (props.flow.step) {
     case "overview":

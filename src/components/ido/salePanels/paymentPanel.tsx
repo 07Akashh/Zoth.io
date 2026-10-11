@@ -1,11 +1,9 @@
 import { PanelTitle, OptionDropdown } from "./panelControls";
 import type { SalePanelProps } from "./salePanelTypes";
-
 type PaymentPanelProps = Pick<
   SalePanelProps,
   "sale" | "flow" | "dispatch" | "unavailable"
 >;
-
 export function PaymentPanel({
   sale,
   flow,
@@ -16,24 +14,53 @@ export function PaymentPanel({
   return (
     <>
       <PanelTitle label="Select your payment method" />
-      <div className="connection-layout">
+      <div
+        className={
+          "mt-6 grid grid-cols-[minmax(0,287px)_minmax(0,1fr)] gap-10 max-[761px]:gap-6 @max-[581px]:grid-cols-1 @max-[581px]:gap-6 @max-[581px]:[&_.design-placeholder]:mx-auto"
+        }
+      >
         <div
-          className="design-placeholder"
+          className={
+            "design-placeholder w-[min(287px,_100%)] h-auto bg-[#ffffff0a] aspect-square"
+          }
           aria-label="Connection illustration placeholder in Figma"
         />
-        <div className="connection-checklist">
+        <div
+          className={
+            "flex flex-col gap-3.5 text-[14px] min-w-0 [&_>_p]:flex [&_>_p]:items-center [&_>_p]:gap-3 [&_>_p]:min-h-5 [&_>_p]:min-w-0 [&_>_div]:flex [&_>_div]:items-center [&_>_div]:gap-3 [&_>_div]:min-h-5 [&_>_div]:min-w-0 [&_.select-trigger]:text-[14px] [&_.select-trigger]:text-muted max-[1151px]:text-[12px] max-[1151px]:[&_.select-trigger]:text-[12px] max-[761px]:text-[14px] max-[761px]:[&_.select-trigger]:text-[14px] max-[761px]:[&_.select-trigger]:min-h-11 [&_p]:[overflow-wrap:anywhere] @max-[581px]:gap-3.5 @max-[581px]:[&_.select-trigger]:min-h-9 max-[761px]:[&_.select-trigger]:min-h-11!"
+          }
+        >
           <p>
-            <span className="check-square checked">✓</span>Lorem ipsum
+            <span
+              className={
+                "h-5 w-5 border border-[#381209] grid place-items-center text-orange text-[12px] flex-none [&.checked]:[border-color:var(--orange)] checked"
+              }
+            >
+              ✓
+            </span>
+            Lorem ipsum
           </p>
           <p>
-            <span className="check-square checked">✓</span>Lorem ipsum dolor sit
-            amet
+            <span
+              className={
+                "h-5 w-5 border border-[#381209] grid place-items-center text-orange text-[12px] flex-none [&.checked]:[border-color:var(--orange)] checked"
+              }
+            >
+              ✓
+            </span>
+            Lorem ipsum dolor sit amet
           </p>
           <div>
-            <span className="check-square" />
+            <span
+              className={
+                "h-5 w-5 border border-[#381209] grid place-items-center text-orange text-[12px] flex-none [&.checked]:[border-color:var(--orange)]"
+              }
+            />
             <OptionDropdown
               label="Network"
+              disabled={unavailable}
               value={network}
+              displayValue="Lorem ipsum"
               options={sale.networks}
               onChange={(selectedNetwork) =>
                 dispatch({ type: "SET_NETWORK", network: selectedNetwork })
@@ -41,24 +68,23 @@ export function PaymentPanel({
             />
           </div>
           <div>
-            <span className="check-square" />
-            <OptionDropdown
-              label="Currency"
-              value={asset}
-              options={sale.paymentAssets}
-              onChange={(selectedAsset) =>
-                dispatch({ type: "SET_ASSET", asset: selectedAsset })
+            <span
+              className={
+                "h-5 w-5 border border-[#381209] grid place-items-center text-orange text-[12px] flex-none [&.checked]:[border-color:var(--orange)]"
               }
             />
+            <OptionDropdown
+              label="Currency"
+              disabled={unavailable}
+              value={asset}
+              displayValue="Lorem ipsum"
+              options={sale.paymentAssets}
+              onChange={(selectedAsset) => {
+                dispatch({ type: "SET_ASSET", asset: selectedAsset });
+                dispatch({ type: "CONTINUE_TO_QUOTE" });
+              }}
+            />
           </div>
-          <button
-            className="checklist-continue"
-            aria-label="Continue"
-            disabled={unavailable}
-            onClick={() => dispatch({ type: "CONTINUE_TO_QUOTE" })}
-          >
-            Lorem ipsum <span aria-hidden="true">→</span>
-          </button>
         </div>
       </div>
     </>

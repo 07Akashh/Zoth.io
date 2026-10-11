@@ -10,19 +10,30 @@ const partners = [
   { name: "Ripple", file: "ripple" },
   { name: "Demo partner", file: "demoPartner" },
 ] as const;
-
 export function PartnerLogos() {
   return (
-    <div className="partner-scroller" aria-label="Partner logos">
-      <div className="partner-track">
+    <div
+      className={
+        "relative h-16 flex-1 min-w-0 overflow-hidden [mask-image:linear-gradient(_90deg,_transparent,_#000_9%,_#000_92%,_transparent_)] [&_img]:max-w-none [@media(hover:_hover)_and_(pointer:_fine)]:[&:hover_.partner-track]:[animation-play-state:paused]"
+      }
+      aria-label="Partner logos"
+    >
+      <div
+        className={
+          "partner-track absolute top-[calc(50%_-_0.56px)] left-0 flex w-[max-content] animate-partner-drift will-change-transform motion-reduce:[animation:none] motion-reduce:[transform:translateY(-50%)] motion-reduce:[will-change:auto]"
+        }
+      >
         {[false, true].map((isDuplicate) => (
           <div
-            className="partner-sequence"
+            className={"flex items-center gap-10 pr-10 flex-none"}
             key={String(isDuplicate)}
             aria-hidden={isDuplicate || undefined}
           >
             {partners.map((partner) => (
-              <div className="partner-logo" key={partner.file}>
+              <div
+                className={"w-[143.099px] h-[56.47px] flex-none overflow-clip"}
+                key={partner.file}
+              >
                 <img
                   src={`/partners/${partner.file}.svg`}
                   alt={isDuplicate ? "" : partner.name}

@@ -26,10 +26,8 @@ export const assetDimensions: Record<
     width: 16.0,
     height: 16.0,
   },
-  "/icons/wallet.svg": {
-    width: 6.0,
-    height: 6.0,
-  },
+  "/icons/baseNetwork.svg": { width: 54, height: 13.966 },
+  "/icons/quoteCheck.svg": { width: 10, height: 10 },
   "/icons/paymentToken.svg": {
     width: 20.0,
     height: 20.0,

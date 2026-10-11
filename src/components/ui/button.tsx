@@ -2,9 +2,8 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
-
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-none text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ff4509] disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 rounded-none text-sm font-medium transition-[transform,background-color,color] duration-100 ease-[var(--ease-out)] active:scale-[0.97] active:duration-160 motion-reduce:transform-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ff4509] disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -26,7 +25,9 @@ export function Button({
   asChild = false,
   ...props
 }: ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & { asChild?: boolean }) {
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+  }) {
   const Component = asChild ? Slot : "button";
   return (
     <Component
