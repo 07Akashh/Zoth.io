@@ -1,14 +1,27 @@
-/** Static SVG assets retain their exported dimensions. */
+import type { ComponentProps } from "react";
+import { assetDimensions } from "@/lib/assetDimensions";
+
+/** Reserve the original exported SVG geometry before images load. */
 export function DesignAsset({
   src,
   alt = "",
   className = "",
-}: {
-  src: string;
-  alt?: string;
-  className?: string;
-}) {
-  return <img src={src} alt={alt} className={className} draggable={false} />;
+  ...props
+}: Pick<
+  ComponentProps<"img">,
+  "src" | "alt" | "className" | "loading" | "fetchPriority"
+> & { src: string }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      {...assetDimensions[src]}
+      decoding="async"
+      draggable={false}
+      {...props}
+    />
+  );
 }
 
 export function DesignBackground() {
@@ -16,7 +29,10 @@ export function DesignBackground() {
     <div className="design-background" aria-hidden="true">
       <div className="design-grid">
         <div className="design-grid-mask">
-          <DesignAsset src="/artwork/perspectiveGrid.svg" />
+          <DesignAsset
+            src="/artwork/perspectiveGrid.svg"
+            fetchPriority="high"
+          />
         </div>
       </div>
       <div className="design-glow" />

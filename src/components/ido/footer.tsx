@@ -36,10 +36,10 @@ export function Footer() {
                         className="youtube-mark"
                         style={{ maskImage: "url(/artwork/youTubeMask.svg)" }}
                       >
-                        <DesignAsset src={file} />
+                        <DesignAsset src={file} loading="lazy" />
                       </span>
                     ) : (
-                      <DesignAsset src={file} />
+                      <DesignAsset src={file} loading="lazy" />
                     )}
                   </button>
                 ))}
@@ -66,29 +66,29 @@ export function Footer() {
                   placeholder="[XX]"
                   required
                 />
-                <button type="submit" aria-label="Subscribe">
+                <button type="submit" aria-label="DEMO — Subscribe">
                   DEMO
                 </button>
               </form>
             </div>
             <div className="footer-link-column">
               <h3>DEMO</h3>
-              <a href="#participate" aria-label="Sale">
+              <a href="#participate" aria-label="Demo — Sale">
                 Demo
               </a>
-              <a href="#timeline" aria-label="Timeline">
+              <a href="#timeline" aria-label="Demo — Timeline">
                 Demo
               </a>
             </div>
             <div className="footer-link-column">
               <h3>DEMO</h3>
-              <a href="#read-before" aria-label="Sale guide">
+              <a href="#read-before" aria-label="Lorem ipsum — Sale guide">
                 Lorem ipsum
               </a>
-              <a href="#sale-details" aria-label="Token details">
+              <a href="#sale-details" aria-label="Lorem ipsum — Token details">
                 Lorem ipsum
               </a>
-              <a href="#top" aria-label="Back to top">
+              <a href="#top" aria-label="Lorem ipsum — Back to top">
                 Lorem ipsum
               </a>
             </div>

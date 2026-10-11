@@ -56,7 +56,7 @@ export function Navbar({
             <a
               key={label}
               href={href}
-              aria-label={label}
+              aria-label={`Demo — ${label}`}
               onClick={() => navigate(href)}
             >
               Demo
@@ -72,7 +72,7 @@ export function Navbar({
           >
             <Dropdown.Trigger
               className="header-outline"
-              aria-label="Open explore menu"
+              aria-label="Lorem ipsum — Open explore menu"
             >
               <span>Lorem ipsum</span>
               <ChevronDown
@@ -136,7 +136,7 @@ export function Navbar({
           >
             <Dropdown.Trigger
               className="header-filled"
-              aria-label={`Network: ${flow.network}. Open account menu`}
+              aria-label={`Lorem ipsum — Network: ${flow.network}. Open account menu`}
             >
               <span>Lorem ipsum</span>
               <ChevronDown
@@ -211,7 +211,7 @@ export function Navbar({
           <a
             key={label}
             href={href}
-            aria-label={label}
+            aria-label={`Demo — ${label}`}
             onClick={() => navigate(href)}
           >
             Demo

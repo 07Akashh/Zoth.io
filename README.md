@@ -27,7 +27,7 @@ pnpm start
 - The four timeline milestones remain in one horizontal row. Narrow containers use compact typography; screens below the supported 375px minimum can scroll the timeline without overflowing the page.
 - Partner logos are complete local SVG exports. Icons and artwork use descriptive camelCase filenames. Arial is the fallback because the licensed Roobert font was not supplied.
 - Loading, error, and not-found boundaries handle unavailable sale data. Motion respects reduced-motion preferences; Radix handles keyboard navigation and focus management.
-- Set `NEXT_PUBLIC_SITE_URL` to the deployed origin for canonical metadata.
+- Set `NEXT_PUBLIC_SITE_URL` to the deployed origin for canonical metadata. Vercel production host variables provide a fallback. The shareable sale URL uses the landing page canonical to avoid duplicate indexing. Robots, sitemap, brand icons, and social preview metadata use Next.js metadata conventions.
 
 ## Checks
 

@@ -18,7 +18,7 @@ export function TopBanner() {
       <a
         className="announcement-link"
         href="#participate"
-        aria-label="Explore the token sale"
+        aria-label="Demo — Explore the token sale"
       >
         Demo
         <DesignAsset src="/icons/arrowRight.svg" />

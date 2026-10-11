@@ -30,6 +30,7 @@ export function PartnerLogos() {
                   height={57}
                   draggable={false}
                   decoding="async"
+                  loading="lazy"
                 />
               </div>
             ))}

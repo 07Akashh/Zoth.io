@@ -5,13 +5,20 @@ import { useSale } from "@/hooks/useSale";
 import { useSaleFlow } from "@/hooks/useSaleFlow";
 import { Navbar } from "./ido/navbar";
 import { TopBanner } from "./ido/topBanner";
+import { LiveSaleCard } from "./ido/liveSaleCard";
 import { SaleStatistics } from "./ido/saleStatistics";
 import { SaleErrorState } from "./ido/saleErrorState";
 import { SaleLoading } from "./ido/saleLoading";
 import { ConnectionDialog } from "./ido/connectionDialog";
 import { DesignBackground } from "./ido/designAssets";
 
-const ParticipationFlow = dynamic(() => import("./ido/participationFlow"));
+const ParticipationFlow = dynamic(() => import("./ido/participationFlow"), {
+  loading: () => (
+    <div className="participation-card min-h-[325px]" role="status">
+      Loading sale tools…
+    </div>
+  ),
+});
 
 type SaleLandingProps = {
   saleId: string;
@@ -60,16 +67,24 @@ export default function SaleLanding({
               <SaleStatistics sale={sale} />
             </div>
             <div className="hero-right">
-              <ParticipationFlow
-                keyboard={keyboard}
-                sale={sale}
-                flow={flow}
-                dispatch={dispatch}
-                saleWindow={saleWindow}
-                onBeginSale={() => setConnection("wallet")}
-                onChooseAsset={selectPayment}
-                onSonarRequest={() => setConnection("sonar")}
-              />
+              {flow.step === "overview" && !flow.walletDemoConnected ? (
+                <LiveSaleCard
+                  saleWindow={saleWindow}
+                  onConnectWallet={() => setConnection("wallet")}
+                  onConnectSonar={() => setConnection("sonar")}
+                />
+              ) : (
+                <ParticipationFlow
+                  keyboard={keyboard}
+                  sale={sale}
+                  flow={flow}
+                  dispatch={dispatch}
+                  saleWindow={saleWindow}
+                  onBeginSale={() => setConnection("wallet")}
+                  onChooseAsset={selectPayment}
+                  onSonarRequest={() => setConnection("sonar")}
+                />
+              )}
             </div>
           </div>
         )}

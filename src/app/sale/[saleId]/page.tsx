@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { connection } from "next/server";
 import { notFound } from "next/navigation";
+import { siteDescription, siteTitle } from "@/lib/siteMetadata";
 import { SalePage } from "@/components/salePage";
 import { getCurrentSale } from "@/lib/server/saleRepository";
 
@@ -15,8 +16,21 @@ export async function generateMetadata({
     return { title: "Sale not found", robots: { index: false, follow: false } };
   return {
     title: `${sale.symbol} — Token Sale`,
-    description: sale.description,
-    alternates: { canonical: `/sale/${sale.id}` },
+    description: siteDescription,
+    // The shareable sale URL shows the same content as the landing page.
+    alternates: { canonical: "/" },
+    openGraph: {
+      title: siteTitle,
+      description: siteDescription,
+      url: "/",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: siteTitle,
+      description: siteDescription,
+      images: ["/opengraph-image"],
+    },
   };
 }
 

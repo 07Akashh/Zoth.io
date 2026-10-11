@@ -47,7 +47,7 @@ export function OptionDropdown({
 
 export function PanelTitle({ label }: { label: string }) {
   return (
-    <h2 className="panel-title" aria-label={label}>
+    <h2 className="panel-title" aria-label={`LOREM IPSUM — ${label}`}>
       LOREM IPSUM
     </h2>
   );
@@ -102,7 +102,7 @@ export function FrameButton({
         type="button"
         variant={outline ? "outline" : "default"}
         className={outline ? "button-outline" : "button-primary"}
-        aria-label={label}
+        aria-label={children ? label : `Lorem ipsum — ${label}`}
         onClick={onClick}
         disabled={disabled}
       >
