@@ -12,7 +12,7 @@ export function TopBanner() {
         onClick={() => setShown(false)}
         className="announcement-close"
       >
-        <DesignAsset file="6d101.svg" />
+        <DesignAsset src="/icons/close.svg" />
       </button>
       <span>Demo</span>
       <a
@@ -21,7 +21,7 @@ export function TopBanner() {
         aria-label="Explore the token sale"
       >
         Demo
-        <DesignAsset file="100b7.svg" />
+        <DesignAsset src="/icons/arrowRight.svg" />
       </a>
     </div>
   );

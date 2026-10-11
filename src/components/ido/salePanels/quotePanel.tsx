@@ -64,9 +64,9 @@ export function QuotePanel({
               </button>
             </span>
             <span className="asset-divider">
-              <DesignAsset file="75efa.svg" />
+              <DesignAsset src="/artwork/paymentDivider.svg" />
             </span>
-            <DesignAsset file="0ec94.svg" />
+            <DesignAsset src="/icons/paymentToken.svg" />
             <OptionDropdown
               label="Pay with"
               options={sale.paymentAssets}
@@ -96,7 +96,7 @@ export function QuotePanel({
           </div>
         </div>
         <span className="quote-arrow" aria-hidden="true">
-          <DesignAsset file="bc2de.svg" />
+          <DesignAsset src="/icons/conversionArrow.svg" />
         </span>
       </div>
       <span className="sr-only" id="contribution-limits">

@@ -4,12 +4,16 @@ import { currency } from "@/lib/utils";
 
 export function SaleDetails({ sale }: { sale: Sale }) {
   const rows = [
-    ["47b83.svg", "Token", sale.symbol],
-    ["db167.svg", "Network", sale.network],
-    ["c3185.svg", "Token price", `$${sale.tokenPrice}`],
-    ["b04ef.svg", "Round supply", currency(sale.roundSupply)],
+    ["/icons/token.svg", "Token", sale.symbol],
+    ["/icons/network.svg", "Network", sale.network],
+    ["/icons/tokenPrice.svg", "Token price", `$${sale.tokenPrice}`],
+    ["/icons/tokenSupply.svg", "Round supply", currency(sale.roundSupply)],
     ["", "Distribution", sale.distribution],
-    ["5df13.svg", "Payment assets", sale.paymentAssets.join(" / ")],
+    [
+      "/icons/paymentAssets.svg",
+      "Payment assets",
+      sale.paymentAssets.join(" / "),
+    ],
   ];
   return (
     <table id="sale-details" className="sale-details w-full">
@@ -22,7 +26,7 @@ export function SaleDetails({ sale }: { sale: Sale }) {
           >
             <th scope="row" className="font-normal text-left">
               <span className="flex items-center gap-3">
-                {icon ? <DesignAsset file={icon} /> : null}
+                {icon ? <DesignAsset src={icon} /> : null}
                 {
                   [
                     "Demo",

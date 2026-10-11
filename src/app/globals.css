@@ -228,7 +228,7 @@ p {
 }
 .design-grid-mask {
   height: 100%;
-  mask: url("/figma/616fa.svg") 0 0/2084.953px 1561.676px no-repeat;
+  mask: url("/artwork/gridMask.svg") 0 0/2084.953px 1561.676px no-repeat;
   position: relative;
 }
 .design-grid-mask > img {

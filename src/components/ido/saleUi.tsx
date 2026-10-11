@@ -49,7 +49,7 @@ export function SaleCountdown({
     <section className="countdown-panel" aria-label="Token sale countdown">
       <div className="countdown-copy">
         <p className="countdown-title">
-          <DesignAsset file="a9229.svg" />
+          <DesignAsset src="/icons/alarmClock.svg" />
           Lorem ipsum dolor
         </p>
         <p>Lorem ipsum dolor sit amet consectetur</p>

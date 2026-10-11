@@ -16,7 +16,7 @@ function Wordmark() {
   return (
     <a className="wordmark" href="#top" aria-label="Demo — Back to top">
       <span className="wordmark-symbol">
-        <DesignAsset file="36e29.svg" />
+        <DesignAsset src="/icons/brandMark.svg" />
       </span>
       <span>Demo</span>
     </a>
@@ -143,7 +143,7 @@ export function Navbar({
                 collisionPadding={18}
               >
                 <Dropdown.Label className="menu-label">
-                  <DesignAsset file="297b9.svg" /> DEMO
+                  <DesignAsset src="/icons/wallet.svg" /> DEMO
                 </Dropdown.Label>
                 <Dropdown.Item
                   className="menu-item"
@@ -155,7 +155,7 @@ export function Navbar({
                   }
                 >
                   [XX]
-                  <DesignAsset file="97fd2.svg" />
+                  <DesignAsset src="/icons/copy.svg" />
                 </Dropdown.Item>
                 <Dropdown.Separator className="menu-separator" />
                 <Dropdown.Item
@@ -163,7 +163,7 @@ export function Navbar({
                   aria-label="View allocations"
                   onSelect={onAllocations}
                 >
-                  <DesignAsset file="297b9.svg" />
+                  <DesignAsset src="/icons/wallet.svg" />
                   Lorem ipsum
                 </Dropdown.Item>
                 <Dropdown.Item

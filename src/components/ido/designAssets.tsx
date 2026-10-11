@@ -1,21 +1,14 @@
-/** Assets exported from the supplied Figma file. SVGs keep their intrinsic size. */
+/** Static SVG assets retain their exported dimensions. */
 export function DesignAsset({
-  file,
+  src,
   alt = "",
   className = "",
 }: {
-  file: string;
+  src: string;
   alt?: string;
   className?: string;
 }) {
-  return (
-    <img
-      src={`/figma/${file}`}
-      alt={alt}
-      className={className}
-      draggable={false}
-    />
-  );
+  return <img src={src} alt={alt} className={className} draggable={false} />;
 }
 
 export function DesignBackground() {
@@ -23,7 +16,7 @@ export function DesignBackground() {
     <div className="design-background" aria-hidden="true">
       <div className="design-grid">
         <div className="design-grid-mask">
-          <DesignAsset file="68b5d.svg" />
+          <DesignAsset src="/artwork/perspectiveGrid.svg" />
         </div>
       </div>
       <div className="design-glow" />
@@ -34,9 +27,15 @@ export function DesignBackground() {
 export function HeroKicker() {
   return (
     <span className="hero-kicker">
-      <DesignAsset file="799d8.svg" className="kicker-outline" />
+      <DesignAsset
+        src="/artwork/heroLabelLeft.svg"
+        className="kicker-outline"
+      />
       <span>Lorem ipsum</span>
-      <DesignAsset file="358d5.svg" className="kicker-outline" />
+      <DesignAsset
+        src="/artwork/heroLabelRight.svg"
+        className="kicker-outline"
+      />
     </span>
   );
 }

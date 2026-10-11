@@ -11,7 +11,7 @@ export function ConnectedPanel({
   return (
     <>
       <div className="ready-status">
-        <DesignAsset file="297b9.svg" />
+        <DesignAsset src="/icons/wallet.svg" />
         <PanelTitle label="Wallet connected" />
       </div>
       <div className="ready-copy">

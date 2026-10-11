@@ -4,11 +4,11 @@ import { toast } from "sonner";
 import { DesignAsset } from "./designAssets";
 
 const socials = [
-  ["X", "464f3.svg"],
-  ["YouTube", "d7618.svg"],
-  ["Discord", "a5974.svg"],
-  ["LinkedIn", "287b4.svg"],
-  ["Medium", "f0086.svg"],
+  ["X", "/icons/xSocial.svg"],
+  ["YouTube", "/icons/youTube.svg"],
+  ["Discord", "/icons/discord.svg"],
+  ["LinkedIn", "/icons/linkedIn.svg"],
+  ["Medium", "/icons/medium.svg"],
 ] as const;
 export function Footer() {
   const [email, setEmail] = useState("");
@@ -34,12 +34,12 @@ export function Footer() {
                     {name === "YouTube" ? (
                       <span
                         className="youtube-mark"
-                        style={{ maskImage: "url(/figma/ed5d1.svg)" }}
+                        style={{ maskImage: "url(/artwork/youTubeMask.svg)" }}
                       >
-                        <DesignAsset file={file} />
+                        <DesignAsset src={file} />
                       </span>
                     ) : (
-                      <DesignAsset file={file} />
+                      <DesignAsset src={file} />
                     )}
                   </button>
                 ))}
