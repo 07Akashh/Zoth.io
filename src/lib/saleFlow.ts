@@ -139,7 +139,10 @@ export function saleFlowReducer(
         ? { ...state, step: "quote", quoteOrigin: "select" }
         : state;
     case "REVIEW_QUOTE":
-      return state.step === "quote" && state.walletDemoConnected && action.valid
+      return state.step === "quote" &&
+        state.walletDemoConnected &&
+        state.accepted &&
+        action.valid
         ? { ...state, step: "review" }
         : state;
     case "CONFIRM_DEMO":

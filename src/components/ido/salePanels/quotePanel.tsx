@@ -1,7 +1,10 @@
+import { Checkbox } from "@/components/ui/checkbox";
 import { FrameButton, DetailRows, OptionDropdown } from "./panelControls";
 import type { SalePanelProps } from "./salePanelTypes";
 import { DesignAsset, TokenMark } from "../designAssets";
 import { currency } from "@/lib/utils";
+const amountRowClassName =
+  "flex items-center gap-1.5 h-[67px] text-[14px] [&_>_input]:text-[clamp(26px,_7cqw,_48px)] [&_>_input]:font-medium [&_>_input]:leading-[1.4] [&_>_input]:min-w-0 [&_>_input]:flex-1 [&_>_input]:bg-transparent [&_>_input]:[border:0] [&_>_input]:text-[#fffffff5] [&_>_input]:w-full [&_>_input]:outline-none [&_>_input::placeholder]:text-[#fffffff5] [&_>_input::placeholder]:opacity-[1] [&_>_output]:text-[clamp(26px,_7cqw,_48px)] [&_>_output]:leading-[1.1] [&_>_output]:font-medium [&_>_output]:flex-1 [&_>_output]:min-w-0 [&_>_output]:[overflow-wrap:anywhere] [&_>_output.muted]:text-[#666] max-[1151px]:[&_>_input]:text-[40px] max-[1151px]:[&_>_output]:text-[40px] max-[1151px]:gap-1 max-[761px]:[&_>_output]:text-[48px] max-[511px]:[&_>_input]:text-[38px] max-[511px]:[&_>_output]:text-[38px] [&_>_input:focus-visible]:[outline:2px_solid_var(--orange)] [&_>_input:focus-visible]:[outline-offset:2px]";
 type QuotePanelProps = Pick<
   SalePanelProps,
   "sale" | "flow" | "dispatch" | "unavailable" | "quote"
@@ -23,6 +26,7 @@ export function QuotePanel({
       >
         <OptionDropdown
           label="Network"
+          disabled={unavailable}
           options={sale.networks}
           value={network}
           displayValue="[XX]"
@@ -48,11 +52,7 @@ export function QuotePanel({
             <label htmlFor="contribution-amount">Demo</label>
             <span>[XX]</span>
           </div>
-          <div
-            className={
-              "flex items-center gap-1.5 h-[67px] text-[14px] [&_>_input]:text-[clamp(26px,_7cqw,_48px)] [&_>_input]:font-medium [&_>_input]:leading-[1.4] [&_>_input]:min-w-0 [&_>_input]:flex-1 [&_>_input]:bg-transparent [&_>_input]:[border:0] [&_>_input]:text-[#fffffff5] [&_>_input]:w-full [&_>_input]:outline-none [&_>_input::placeholder]:text-[#fffffff5] [&_>_input::placeholder]:opacity-[1] [&_>_output]:text-[clamp(26px,_7cqw,_48px)] [&_>_output]:leading-[1.1] [&_>_output]:font-medium [&_>_output]:flex-1 [&_>_output]:min-w-0 [&_>_output]:[overflow-wrap:anywhere] [&_>_output.muted]:text-[#666] max-[1151px]:[&_>_input]:text-[40px] max-[1151px]:[&_>_output]:text-[40px] max-[1151px]:gap-1 max-[761px]:[&_>_output]:text-[48px] max-[511px]:[&_>_input]:text-[38px] max-[511px]:[&_>_output]:text-[38px] [&_>_input:focus-visible]:[outline:2px_solid_var(--orange)] [&_>_input:focus-visible]:[outline-offset:2px]"
-            }
-          >
+          <div className={amountRowClassName}>
             <input
               id="contribution-amount"
               type="text"
@@ -60,6 +60,7 @@ export function QuotePanel({
               autoComplete="off"
               placeholder="[XX]"
               value={amount}
+              disabled={unavailable}
               aria-label={`Contribution amount in ${asset}`}
               aria-invalid={amount !== "" && !quote.valid}
               aria-describedby="contribution-limits"
@@ -74,6 +75,7 @@ export function QuotePanel({
               title="Set maximum amount"
             >
               <button
+                disabled={unavailable}
                 onClick={() =>
                   dispatch({
                     type: "SET_AMOUNT",
@@ -95,6 +97,7 @@ export function QuotePanel({
             <DesignAsset src="/icons/paymentToken.svg" />
             <OptionDropdown
               label="Pay with"
+              disabled={unavailable}
               options={sale.paymentAssets}
               value={asset}
               displayValue="DEMO"
@@ -117,11 +120,7 @@ export function QuotePanel({
             <span>Lorem ipsum</span>
             <span aria-label={sale.symbol}>Demo</span>
           </div>
-          <div
-            className={
-              "flex items-center gap-1.5 h-[67px] text-[14px] [&_>_input]:text-[clamp(26px,_7cqw,_48px)] [&_>_input]:font-medium [&_>_input]:leading-[1.4] [&_>_input]:min-w-0 [&_>_input]:flex-1 [&_>_input]:bg-transparent [&_>_input]:[border:0] [&_>_input]:text-[#fffffff5] [&_>_input]:w-full [&_>_input]:outline-none [&_>_input::placeholder]:text-[#fffffff5] [&_>_input::placeholder]:opacity-[1] [&_>_output]:text-[clamp(26px,_7cqw,_48px)] [&_>_output]:leading-[1.1] [&_>_output]:font-medium [&_>_output]:flex-1 [&_>_output]:min-w-0 [&_>_output]:[overflow-wrap:anywhere] [&_>_output.muted]:text-[#666] max-[1151px]:[&_>_input]:text-[40px] max-[1151px]:[&_>_output]:text-[40px] max-[1151px]:gap-1 max-[761px]:[&_>_output]:text-[48px] max-[511px]:[&_>_input]:text-[38px] max-[511px]:[&_>_output]:text-[38px] [&_>_input:focus-visible]:[outline:2px_solid_var(--orange)] [&_>_input:focus-visible]:[outline-offset:2px]"
-            }
-          >
+          <div className={amountRowClassName}>
             <output
               className={quote.valid ? "" : "muted text-muted"}
               aria-label="You receive (estimated)"
@@ -162,7 +161,15 @@ export function QuotePanel({
           "[XX]",
           "[XX]",
           "[XX]",
-          <DesignAsset key="network" src="/icons/baseNetwork.svg" alt="Base" />,
+          network === "Base" ? (
+            <DesignAsset
+              key="network"
+              src="/icons/baseNetwork.svg"
+              alt="Base"
+            />
+          ) : (
+            network
+          ),
         ]}
         values={[
           `$${sale.tokenPrice}`,
@@ -184,26 +191,18 @@ export function QuotePanel({
         ]}
       />
       <label
-        className={
-          "flex items-start gap-2 mt-4 [font-family:-apple-system,_BlinkMacSystemFont,_Arial,_sans-serif] text-[14px] tracking-[0.21px] text-[#ffffffb3] leading-[17px] [&_input]:[appearance:none] [&_input]:w-3.5 [&_input]:h-3.5 [&_input]:min-w-3.5 [&_input]:border [&_input]:border-[#ffffffcc] [&_input]:relative [&_input]:my-0 [&_input]:mx-0 [&_input]:bg-transparent [&_input]:cursor-pointer [&_input:checked]:bg-orange [&_input:checked]:[border-color:var(--orange)]"
-        }
+        htmlFor="quote-consent"
+        className="mt-4 flex cursor-pointer items-start gap-2 [font-family:-apple-system,_BlinkMacSystemFont,_Arial,_sans-serif] text-[14px] leading-[17px] tracking-[0.21px] text-white/70"
       >
-        <span className="relative flex size-3.5 shrink-0">
-          <input
-            type="checkbox"
-            checked={accepted}
-            onChange={(e) =>
-              dispatch({ type: "SET_ACCEPTED", accepted: e.target.checked })
-            }
-            aria-label="I understand this is a mock quote and not a real token purchase"
-          />
-          {accepted ? (
-            <DesignAsset
-              src="/icons/quoteCheck.svg"
-              className="pointer-events-none absolute left-0.5 top-0.5"
-            />
-          ) : null}
-        </span>
+        <Checkbox
+          id="quote-consent"
+          checked={accepted}
+          disabled={unavailable}
+          onCheckedChange={(checked) =>
+            dispatch({ type: "SET_ACCEPTED", accepted: checked === true })
+          }
+          aria-label="I understand this is a mock quote and not a real token purchase"
+        />
         <span>
           Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod
         </span>

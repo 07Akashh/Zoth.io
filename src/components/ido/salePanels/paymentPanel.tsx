@@ -1,3 +1,4 @@
+import { ChecklistIndicator } from "./checklistIndicator";
 import { PanelTitle, OptionDropdown } from "./panelControls";
 import type { SalePanelProps } from "./salePanelTypes";
 type PaymentPanelProps = Pick<
@@ -31,31 +32,15 @@ export function PaymentPanel({
           }
         >
           <p>
-            <span
-              className={
-                "h-5 w-5 border border-[#381209] grid place-items-center text-orange text-[12px] flex-none [&.checked]:[border-color:var(--orange)] checked"
-              }
-            >
-              ✓
-            </span>
+            <ChecklistIndicator complete />
             Lorem ipsum
           </p>
           <p>
-            <span
-              className={
-                "h-5 w-5 border border-[#381209] grid place-items-center text-orange text-[12px] flex-none [&.checked]:[border-color:var(--orange)] checked"
-              }
-            >
-              ✓
-            </span>
+            <ChecklistIndicator complete />
             Lorem ipsum dolor sit amet
           </p>
           <div>
-            <span
-              className={
-                "h-5 w-5 border border-[#381209] grid place-items-center text-orange text-[12px] flex-none [&.checked]:[border-color:var(--orange)]"
-              }
-            />
+            <ChecklistIndicator />
             <OptionDropdown
               label="Network"
               disabled={unavailable}
@@ -68,11 +53,7 @@ export function PaymentPanel({
             />
           </div>
           <div>
-            <span
-              className={
-                "h-5 w-5 border border-[#381209] grid place-items-center text-orange text-[12px] flex-none [&.checked]:[border-color:var(--orange)]"
-              }
-            />
+            <ChecklistIndicator />
             <OptionDropdown
               label="Currency"
               disabled={unavailable}

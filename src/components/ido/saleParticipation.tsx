@@ -1,11 +1,12 @@
 "use client";
 import { motion, useIsPresent, useReducedMotion } from "framer-motion";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import {
   motionEaseOut,
   panelEnterSeconds,
   panelExitSeconds,
 } from "@/lib/motion";
+import { cn } from "@/lib/utils";
 import type { Sale } from "@/types/sale";
 import type { SaleWindow } from "@/lib/saleTime";
 import type { SaleFlowAction, SaleFlowState } from "@/lib/saleFlow";
@@ -47,6 +48,14 @@ export const SaleParticipation = forwardRef<
 ) {
   const reduced = useReducedMotion();
   const isPresent = useIsPresent();
+  const panelRef = useRef<HTMLElement>(null);
+  const focusOnMount = useRef(keyboard);
+  useImperativeHandle(ref, () => panelRef.current!, []);
+  useEffect(() => {
+    if (focusOnMount.current && isPresent) {
+      panelRef.current?.focus({ preventScroll: true });
+    }
+  }, [isPresent]);
   const { step, amount } = flow;
   const unavailable = saleWindow !== "live";
   const quote = getContributionQuote(
@@ -66,15 +75,12 @@ export const SaleParticipation = forwardRef<
     onSonarRequest,
   };
   // popLayout keeps the outgoing panel visible while its replacement enters.
-  // A full transform string lets Motion use the browser's compositor.
   const variants = {
-    enter: (instant: boolean) => ({
+    enter: {
       opacity: 0,
-      transform: instant || reduced ? "none" : "translate3d(0px,0px,0px)",
-    }),
+    },
     present: (instant: boolean) => ({
       opacity: 1,
-      transform: instant || reduced ? "none" : "translate3d(0px,0px,0px)",
       transition: {
         duration: instant ? 0 : reduced ? panelExitSeconds : panelEnterSeconds,
         ease: motionEaseOut,
@@ -82,7 +88,6 @@ export const SaleParticipation = forwardRef<
     }),
     exit: (instant: boolean) => ({
       opacity: 0,
-      transform: instant || reduced ? "none" : "translate3d(0px,0px,0px)",
       transition: {
         duration: instant ? 0 : panelExitSeconds,
         ease: motionEaseOut,
@@ -91,15 +96,20 @@ export const SaleParticipation = forwardRef<
   };
   return (
     <motion.section
-      ref={ref}
+      ref={panelRef}
+      tabIndex={-1}
       custom={keyboard}
       variants={variants}
       initial="enter"
       animate="present"
       exit="exit"
-      className={saleCardVariants({
-        step: step === "overview" && flow.walletDemoConnected ? "ready" : step,
-      })}
+      className={cn(
+        "outline-none",
+        saleCardVariants({
+          step:
+            step === "overview" && flow.walletDemoConnected ? "ready" : step,
+        }),
+      )}
       id={isPresent ? "participate" : undefined}
       aria-hidden={!isPresent || undefined}
       inert={!isPresent || undefined}

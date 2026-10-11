@@ -137,6 +137,7 @@ export function FrameButton({
   return (
     <div className={cn(frameVariants({ outline }))}>
       <Button
+        className="active:scale-100"
         type="button"
         variant={outline ? "outline" : "default"}
         aria-label={children ? label : `Lorem ipsum — ${label}`}
