@@ -8,6 +8,7 @@ import { TopBanner } from "./ido/topBanner";
 import { SaleStatistics } from "./ido/saleStatistics";
 import { SaleErrorState } from "./ido/saleErrorState";
 import { SaleLoading } from "./ido/saleLoading";
+import { ConnectionDialog } from "./ido/connectionDialog";
 import { DesignBackground } from "./ido/designAssets";
 
 const ParticipationFlow = dynamic(() => import("./ido/participationFlow"));
@@ -25,14 +26,9 @@ export default function SaleLanding({
 }: SaleLandingProps) {
   const { data: sale, isPending, refetch, isFetching } = useSale(saleId);
   const [keyboard, setKeyboard] = useState(false);
-  const {
-    flow,
-    dispatch,
-    saleWindow,
-    beginSale,
-    selectPayment,
-    viewAllocations,
-  } = useSaleFlow(sale);
+  const [connection, setConnection] = useState<"wallet" | "sonar" | null>(null);
+  const { flow, dispatch, saleWindow, selectPayment, viewAllocations } =
+    useSaleFlow(sale);
 
   return (
     <main
@@ -70,15 +66,16 @@ export default function SaleLanding({
                 flow={flow}
                 dispatch={dispatch}
                 saleWindow={saleWindow}
-                onBeginSale={beginSale}
+                onBeginSale={() => setConnection("wallet")}
                 onChooseAsset={selectPayment}
-                onSonarRequest={viewAllocations}
+                onSonarRequest={() => setConnection("sonar")}
               />
             </div>
           </div>
         )}
       </section>
       {children}
+      <ConnectionDialog kind={connection} onClose={() => setConnection(null)} />
     </main>
   );
 }

@@ -1167,57 +1167,7 @@ p {
 .resources-card > a:hover {
   color: var(--orange);
 }
-.timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  height: 149px;
-}
-.timeline-step {
-  position: relative;
-  padding-top: 30px;
-  padding-right: 16px;
-}
-.timeline-step:before {
-  content: "";
-  height: 2px;
-  background: #ffe9dc1f;
-  position: absolute;
-  left: 14px;
-  right: 0;
-  top: 8px;
-}
-.timeline-step:last-child:before {
-  display: none;
-}
-.timeline-marker {
-  position: absolute;
-  left: 0;
-  top: 2px;
-  height: 18px;
-  width: 18px;
-  border: 2px solid #ffe9dc3d;
-  border-radius: 50%;
-  background: #0b0807;
-}
-.timeline-marker.is-current {
-  border-color: var(--orange);
-}
-.timeline-step > p {
-  font-size: 13px;
-  line-height: 20.15px;
-  min-height: 20px;
-}
-.timeline-step h3 {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 23.4px;
-  margin-top: 2px;
-}
-.timeline-step > span {
-  font-size: 14px;
-  color: #bdb1a9;
-  line-height: 21.7px;
-}
+
 .sale-details {
   margin-top: 32px;
 }
@@ -1592,12 +1542,7 @@ p {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
     gap: 35px;
   }
-  .timeline-step h3 {
-    font-size: 14px;
-  }
-  .timeline-step > span {
-    font-size: 12px;
-  }
+
   .detail-row {
     font-size: 13px;
   }
@@ -1719,12 +1664,7 @@ p {
     margin-top: 30px;
     max-width: 500px;
   }
-  .timeline-step h3 {
-    font-size: 16px;
-  }
-  .timeline-step > span {
-    font-size: 14px;
-  }
+
   .detail-row {
     font-size: 15px;
   }
@@ -1834,17 +1774,7 @@ p {
     height: auto;
     min-height: 325px;
   }
-  .timeline-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    height: auto;
-  }
-  .timeline-step {
-    min-height: 120px;
-  }
-  .timeline-step:nth-child(2):before {
-    display: none;
-  }
+
   .footer-news,
   .subscription {
     width: 100%;
@@ -1911,11 +1841,6 @@ p {
   }
 }
 
-.timeline-step > time {
-  font-size: 14px;
-  color: #bdb1a9;
-  line-height: 21.7px;
-}
 @media (max-width: 510px) {
   .raised-row .metric-value {
     font-size: 24px;
@@ -2230,13 +2155,7 @@ p {
 .detail-row td {
   max-width: 55%;
 }
-.timeline-step > time {
-  display: block;
-  color: #bdb1a9;
-  font-size: 14px;
-  line-height: 21.7px;
-  overflow-wrap: anywhere;
-}
+
 @container (max-width:580px) {
   .connection-layout {
     grid-template-columns: 1fr;

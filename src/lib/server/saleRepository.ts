@@ -16,6 +16,6 @@ export const getCachedSale = unstable_cache(
     if (saleId !== defaultSaleId) return null;
     return createSaleData();
   },
-  ["public-sale"],
+  ["public-sale-with-milestone-labels"],
   { revalidate: 60, tags: ["public-sale"] },
 );

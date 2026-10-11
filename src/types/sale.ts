@@ -4,6 +4,9 @@ export interface Milestone {
   label: string;
   date: string;
   description: string;
+  displayLabel: string;
+  displayDate: string;
+  displayStatus: string;
 }
 export interface Sale {
   id: string;
