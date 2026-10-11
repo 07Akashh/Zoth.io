@@ -342,6 +342,21 @@ p {
   background: #220800;
   min-width: 181px;
 }
+.header-menu-icon {
+  flex-shrink: 0;
+  transition: transform var(--duration-menu) var(--ease-out);
+}
+.header-actions [data-state="open"] > .header-menu-icon {
+  transform: rotate(180deg);
+}
+[data-input="keyboard"] .header-menu-icon {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-menu-icon {
+    transition: none;
+  }
+}
 .header-filled {
   background: var(--orange);
   min-width: 164px;

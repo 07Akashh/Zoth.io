@@ -1,6 +1,6 @@
 "use client";
 import * as Dropdown from "@radix-ui/react-dropdown-menu";
-import { Menu, RotateCcw, X } from "lucide-react";
+import { ChevronDown, Menu, RotateCcw, X } from "lucide-react";
 import { useRef, useState } from "react";
 import type { SaleFlowAction, SaleFlowState } from "@/lib/saleFlow";
 import { DesignAsset } from "./designAssets";
@@ -74,7 +74,12 @@ export function Navbar({
               className="header-outline"
               aria-label="Open explore menu"
             >
-              Lorem ipsum
+              <span>Lorem ipsum</span>
+              <ChevronDown
+                className="header-menu-icon"
+                size={18}
+                aria-hidden="true"
+              />
             </Dropdown.Trigger>
             <Dropdown.Portal>
               <Dropdown.Content
@@ -133,7 +138,12 @@ export function Navbar({
               className="header-filled"
               aria-label={`Network: ${flow.network}. Open account menu`}
             >
-              Lorem ipsum
+              <span>Lorem ipsum</span>
+              <ChevronDown
+                className="header-menu-icon"
+                size={18}
+                aria-hidden="true"
+              />
             </Dropdown.Trigger>
             <Dropdown.Portal>
               <Dropdown.Content
